@@ -24,9 +24,9 @@ enum MissionType: String, CaseIterable, Codable {
     var iconName: String {
         switch self {
         case .math:
-            "plus.forwardslash.minus" // TODO: struct que contenga imagenes estáticas
+            AppAssets.Icons.math
         case .memory:
-            "brain.head.profile"
+            AppAssets.Icons.math
         }
     }
 }
