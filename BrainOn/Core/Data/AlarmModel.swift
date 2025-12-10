@@ -16,22 +16,22 @@ final class AlarmModel {
     var label: String
     var isEnabled: Bool
     var repeatDays: [Int]
-    var missionTypeRaw: String // TODO: Validar si puede ser de tipo MissionType
+    var missionType: MissionType
     var difficultyLevel: Int
     
-    init(id: UUID,
+    init(id: UUID = UUID(),
          time: Date,
          label: String,
          isEnabled: Bool,
          repeatDays: [Int] = [],
          missionType: MissionType = .math,
-         difficultyLevel: Int) {
+         difficultyLevel: Int = 1) {
         self.id = id
         self.time = time
         self.label = label
         self.isEnabled = isEnabled
         self.repeatDays = repeatDays
-        self.missionTypeRaw = missionType.rawValue
+        self.missionType = missionType
         self.difficultyLevel = difficultyLevel
     }
 }

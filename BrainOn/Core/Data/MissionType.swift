@@ -5,19 +5,19 @@
 //  Created by jhoan sebastian franco cardona on 10/12/25.
 //
 
-import Foundation
+import SwiftUICore
 
 enum MissionType: String, CaseIterable, Codable {
     
     case math
     case memory
     
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .math:
-            "Matemáticas" // TODO: Localizar
+            CommonStrings.math
         case .memory:
-            "Memoria"
+            CommonStrings.memory
         }
     }
     

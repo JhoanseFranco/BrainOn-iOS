@@ -6,8 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AlarmListView: View {
+    
+    // MARK: Properties
+    
+    @Environment(\.modelContext) private var modelContext
+    
+    @Query(sort: \AlarmModel.time) private var alarms: [AlarmModel]
+    
+    // MARK: Body
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -15,14 +25,58 @@ struct AlarmListView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    Text(AlarmsStrings.List.empty)
-                        .foregroundStyle(.white)
+                    AlarmsHeaderView()
+                        .padding(.bottom, 20)
+                    
+                    if alarms.isEmpty {
+                        ContentUnavailableView(AlarmsStrings.List.empty, systemImage: AppAssets.Icons.alarm, description: Text(AlarmsStrings.List.empty))
+                    } else {
+                        ScrollView {
+                            VStack(spacing: 16) {
+                                ForEach(alarms) { alarm in
+                                    AlarmCardView(alarm: alarm)
+                                        .contextMenu {
+                                            Button(role: .destructive) {
+                                                deletAlarm(alarm)
+                                            } label: {
+                                                Label(CommonStrings.delete, systemImage: AppAssets.Icons.trash)
+                                            }
+                                        }
+                                }
+                            }
+                            .padding(.vertical)
+                        }
+                    }
                 }
             }
-            .navigationTitle(Text(AlarmsStrings.title))
-            .toolbarBackground(AppAssets.Colors.brandBackground, for: .navigationBar)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: addDebugAlarm ) {
+                        Image(systemName: AppAssets.Icons.plus)
+                            .foregroundStyle(AppAssets.Colors.brandYellow)
+                    }
+                }
+            }
+//            .navigationTitle(Text(AlarmsStrings.title))
+//            .toolbarBackground(AppAssets.Colors.brandBackground, for: .navigationBar)
+//            .toolbarColorScheme(.dark, for: .navigationBar)
         }
+    }
+}
+
+
+// MARK: - Private methods
+
+private extension AlarmListView {
+    
+    func deletAlarm(_ alarm: AlarmModel) {
+        modelContext.delete(alarm)
+    }
+    
+    func addDebugAlarm() {
+        let newAlarm = AlarmModel(time: Date(), label: "Debug alarm", isEnabled: true)
+        
+        modelContext.insert(newAlarm)
     }
 }
 
