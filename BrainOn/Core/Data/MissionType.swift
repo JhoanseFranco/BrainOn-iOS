@@ -26,7 +26,7 @@ enum MissionType: String, CaseIterable, Codable {
         case .math:
             AppAssets.Icons.math
         case .memory:
-            AppAssets.Icons.math
+            AppAssets.Icons.brain
         }
     }
 }

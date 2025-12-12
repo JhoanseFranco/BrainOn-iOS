@@ -13,5 +13,6 @@ enum CommonStrings {
     static var delete: LocalizedStringKey = "Delete"
     static var math: LocalizedStringKey = "Math"
     static var memory: LocalizedStringKey = "Memory"
+    static var save: LocalizedStringKey = "Save"
     static var settings: LocalizedStringKey = "settings"
 }

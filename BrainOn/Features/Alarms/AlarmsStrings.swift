@@ -15,4 +15,15 @@ enum AlarmsStrings {
         
         static var empty: LocalizedStringKey = "alarms.list.empty"
     }
+    
+    enum edit {
+        
+        static var labelPlaceholder: LocalizedStringKey = "Label (e.g. Work)"
+        static var general: LocalizedStringKey = "General"
+        static var mission: LocalizedStringKey = "Mission"
+        static var wakeUpChallenge: LocalizedStringKey = "Wake-up Challenge"
+        static var completeThisMissionMessage: LocalizedStringKey = "You must complete this mission to turn off the alarm."
+        static var newAlarm: LocalizedStringKey = "New alarm"
+        static var editAlarm: LocalizedStringKey = "Edit alarm"
+    }
 }

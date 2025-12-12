@@ -16,6 +16,10 @@ struct AlarmListView: View {
     
     @Query(sort: \AlarmModel.time) private var alarms: [AlarmModel]
     
+    @State private var selectedAlarm: AlarmModel?
+    @State private var showCreateEditor = false
+    
+    
     // MARK: Body
     
     var body: some View {
@@ -35,6 +39,9 @@ struct AlarmListView: View {
                             VStack(spacing: 16) {
                                 ForEach(alarms) { alarm in
                                     AlarmCardView(alarm: alarm)
+                                        .onTapGesture {
+                                            selectedAlarm = alarm
+                                        }
                                         .contextMenu {
                                             Button(role: .destructive) {
                                                 deletAlarm(alarm)
@@ -51,15 +58,19 @@ struct AlarmListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: addDebugAlarm ) {
+                    Button(action: { showCreateEditor = true } ) {
                         Image(systemName: AppAssets.Icons.plus)
                             .foregroundStyle(AppAssets.Colors.brandYellow)
+                            .font(.title3)
                     }
                 }
             }
-//            .navigationTitle(Text(AlarmsStrings.title))
-//            .toolbarBackground(AppAssets.Colors.brandBackground, for: .navigationBar)
-//            .toolbarColorScheme(.dark, for: .navigationBar)
+            .sheet(isPresented: $showCreateEditor) {
+                AlarmEditorView()
+            }
+            .sheet(item: $selectedAlarm) { alarm in
+                AlarmEditorView(alarm: alarm)
+            }
         }
     }
 }
@@ -71,12 +82,6 @@ private extension AlarmListView {
     
     func deletAlarm(_ alarm: AlarmModel) {
         modelContext.delete(alarm)
-    }
-    
-    func addDebugAlarm() {
-        let newAlarm = AlarmModel(time: Date(), label: "Debug alarm", isEnabled: true)
-        
-        modelContext.insert(newAlarm)
     }
 }
 

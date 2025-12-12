@@ -71,8 +71,56 @@
         }
       }
     },
+    "Edit alarm" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Alarm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar alarma"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "General"
+          }
+        }
+      }
+    },
     "Good Morning, Dev!" : {
 
+    },
+    "Label (e.g. Work)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Label (e.g. Work)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiqueta (Ej. Trabajo)"
+          }
+        }
+      }
     },
     "Math" : {
       "localizations" : {
@@ -106,6 +154,54 @@
         }
       }
     },
+    "Mission" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mission"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Misión"
+          }
+        }
+      }
+    },
+    "New alarm" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New alarm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva alarma"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guarfar"
+          }
+        }
+      }
+    },
     "settings" : {
       "localizations" : {
         "en" : {
@@ -118,6 +214,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajustes"
+          }
+        }
+      }
+    },
+    "Wake-up Challenge" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wake-up Challenge"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desafío para despertar"
+          }
+        }
+      }
+    },
+    "You must complete this mission to turn off the alarm." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You must complete this mission to turn off the alarm."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debes completar esta misión para apagar la alarma."
           }
         }
       }
