@@ -15,24 +15,14 @@ struct AlarmEditorView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
-    @State private var time = Date()
-    @State private var label = ""
-    @State private var selectedMission: MissionType = .math
-    @State private var isEnabled = true
-    
-    var alarmToEdit: AlarmModel?
+    @State private var viewModel = AlarmEditorViewModel()
     
     
     // MARK: Initialization
     
     init(alarm: AlarmModel? = nil) {
-        alarmToEdit = alarm
-        
         if let alarm {
-            _time = State(initialValue: alarm.time)
-            _label = State(initialValue: alarm.label)
-            _selectedMission = State(initialValue: alarm.missionType)
-            _isEnabled = State(initialValue: alarm.isEnabled)
+            _viewModel = State(initialValue: AlarmEditorViewModel(alarm: alarm))
         }
     }
     
@@ -45,20 +35,20 @@ struct AlarmEditorView: View {
                 AppAssets.Colors.brandBackground.ignoresSafeArea()
                 
                 VStack(spacing: 20) {
-                    DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
+                    DatePicker("", selection: $viewModel.time, displayedComponents: .hourAndMinute)
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                         .colorMultiply(AppAssets.Colors.brandYellow)
                     
                     Form {
                         Section {
-                            TextField(AlarmsStrings.edit.labelPlaceholder, text: $label)
+                            TextField(AlarmsStrings.edit.labelPlaceholder, text: $viewModel.label)
                         } header: {
                             Text(AlarmsStrings.edit.general)
                         }
                         
                         Section {
-                            Picker(AlarmsStrings.edit.mission, selection: $selectedMission) {
+                            Picker(AlarmsStrings.edit.mission, selection: $viewModel.selectedMission) {
                                 ForEach(MissionType.allCases, id: \.self) { mission in
                                     HStack {
                                         Image(systemName: mission.iconName)
@@ -67,7 +57,6 @@ struct AlarmEditorView: View {
                                     .tag(mission)
                                 }
                             }
-                            .pickerStyle(.navigationLink)
                         } header: {
                             Text(AlarmsStrings.edit.wakeUpChallenge)
                         } footer: {
@@ -77,42 +66,19 @@ struct AlarmEditorView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-            .navigationTitle(alarmToEdit == nil ? AlarmsStrings.edit.newAlarm : AlarmsStrings.edit.editAlarm)
+            .navigationTitle(viewModel.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(CommonStrings.save) {
-                        saveAlarm()
+                        viewModel.save(context: modelContext)
+                        dismiss()
                     }
                     .foregroundStyle(AppAssets.Colors.brandYellow)
                     .fontWeight(.bold)
                 }
             }
         }
-    }
-}
-
-
-// MARK: Private methods
-
-private extension AlarmEditorView {
-    
-    func saveAlarm() {
-        if let alarmToEdit {
-            alarmToEdit.time = time
-            alarmToEdit.label = label.isEmpty ? "Alarma" : label
-            alarmToEdit.missionType = selectedMission
-            alarmToEdit.isEnabled = true
-        } else {
-            let newAlarm = AlarmModel(time: time,
-                                      label: label.isEmpty ? "Alarma" : label,
-                                      isEnabled: true,
-                                      missionType: selectedMission)
-            
-            modelContext.insert(newAlarm)
-        }
-        
-        dismiss()
     }
 }
 

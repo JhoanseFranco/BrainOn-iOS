@@ -9,6 +9,7 @@ import SwiftUICore
 
 enum CommonStrings {
     
+    static var alarm: LocalizedStringKey = "alarm"
     static var alarms: LocalizedStringKey = "alarms"
     static var delete: LocalizedStringKey = "Delete"
     static var math: LocalizedStringKey = "Math"
