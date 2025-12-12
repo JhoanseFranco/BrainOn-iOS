@@ -122,6 +122,22 @@
     "Good Morning, Dev!" : {
 
     },
+    "I'M AWAKE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'M AWAKE"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ESTOY DESPIERTO"
+          }
+        }
+      }
+    },
     "Label (e.g. Work)" : {
       "localizations" : {
         "en" : {

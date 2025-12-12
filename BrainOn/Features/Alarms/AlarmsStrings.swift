@@ -26,4 +26,9 @@ enum AlarmsStrings {
         static var newAlarm: LocalizedStringKey = "New alarm"
         static var editAlarm: LocalizedStringKey = "Edit alarm"
     }
+    
+    enum wakeUp {
+        
+        static var iAmAwake: LocalizedStringKey = "I'M AWAKE"
+    }
 }
