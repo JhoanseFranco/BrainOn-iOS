@@ -19,7 +19,7 @@ struct WakeUpView: View {
     // MARK: Initialization
     
     init(alarmLabel: String) {
-        _viewModel = State(initialValue: WakeUpViewModel(alarmLabel: alarmLabel))
+        _viewModel = State(initialValue: WakeUpViewModel(alarmLabel: alarmLabel, audioService: AudioService.shared))
     }
     
     var body: some View {
@@ -46,7 +46,7 @@ struct WakeUpView: View {
                     Image(systemName: AppAssets.Icons.alarm)
                         .font(.system(size: 60))
                         .foregroundStyle(AppAssets.Colors.brandYellow)
-                        .symbolEffect(.bounce, options: .repeating) // deprecated
+                        .symbolEffect(.bounce, options: .repeat(.continuous))
                     
                     Text(viewModel.alarmLabel)
                         .font(.title2)

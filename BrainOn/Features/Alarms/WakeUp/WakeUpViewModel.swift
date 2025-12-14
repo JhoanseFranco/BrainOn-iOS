@@ -23,14 +23,14 @@ final class WakeUpViewModel {
     
     // MARK: Initialization
     
-    init(alarmLabel: String, audioService: AudioServiceProtocol = AudioService.shared) {
+    init(alarmLabel: String, audioService: AudioServiceProtocol) {
         self.alarmLabel = alarmLabel
         self.audioService = audioService
     }
     
     func onAppear() {
         audioService.playAlarm(soundName: "alarm_sound")
-        //startClock()
+        startClock()
     }
     
     func onDisappear() {
