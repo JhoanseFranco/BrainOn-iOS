@@ -22,7 +22,7 @@ final class AlarmEditorViewModel {
     var alarmToEdit: AlarmModel?
     
     var title: LocalizedStringKey {
-        alarmToEdit == nil ? AlarmsStrings.edit.newAlarm : AlarmsStrings.edit.editAlarm
+        alarmToEdit == nil ? AlarmsStrings.Edit.newAlarm : AlarmsStrings.Edit.editAlarm
     }
     
     

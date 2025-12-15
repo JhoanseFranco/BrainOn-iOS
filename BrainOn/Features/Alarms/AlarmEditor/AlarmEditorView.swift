@@ -42,13 +42,13 @@ struct AlarmEditorView: View {
                     
                     Form {
                         Section {
-                            TextField(AlarmsStrings.edit.labelPlaceholder, text: $viewModel.label)
+                            TextField(AlarmsStrings.Edit.labelPlaceholder, text: $viewModel.label)
                         } header: {
-                            Text(AlarmsStrings.edit.general)
+                            Text(AlarmsStrings.Edit.general)
                         }
                         
                         Section {
-                            Picker(AlarmsStrings.edit.mission, selection: $viewModel.selectedMission) {
+                            Picker(AlarmsStrings.Edit.mission, selection: $viewModel.selectedMission) {
                                 ForEach(MissionType.allCases, id: \.self) { mission in
                                     HStack {
                                         Image(systemName: mission.iconName)
@@ -58,9 +58,9 @@ struct AlarmEditorView: View {
                                 }
                             }
                         } header: {
-                            Text(AlarmsStrings.edit.wakeUpChallenge)
+                            Text(AlarmsStrings.Edit.wakeUpChallenge)
                         } footer: {
-                            Text(AlarmsStrings.edit.completeThisMissionMessage)
+                            Text(AlarmsStrings.Edit.completeThisMissionMessage)
                         }
                     }
                     .scrollContentBackground(.hidden)

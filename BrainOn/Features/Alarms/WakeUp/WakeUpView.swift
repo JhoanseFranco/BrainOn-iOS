@@ -65,7 +65,7 @@ struct WakeUpView: View {
                     viewModel.prepareForMission()
                     viewModel.stopAlarm()
                 } label: {
-                    Text(AlarmsStrings.wakeUp.iAmAwake)
+                    Text(AlarmsStrings.WakeUp.iAmAwake)
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(.black)

@@ -18,6 +18,7 @@ enum AppAssets {
         static let brain = "brain.head.profile"
         static let checkmark = "checkmark"
         static let chevronRight = "chevron.right"
+        static let deleteLeft = "delete.left"
         static let math = "plus.forwardslash.minus"
         static let play = "play.fill"
         static let plus = "plus"
