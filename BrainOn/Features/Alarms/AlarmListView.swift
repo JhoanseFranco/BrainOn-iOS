@@ -19,6 +19,8 @@ struct AlarmListView: View {
     @State private var selectedAlarm: AlarmModel?
     @State private var showCreateEditor = false
     
+    @State private var showFakeAlarm = false
+    
     
     // MARK: Body
     
@@ -64,12 +66,22 @@ struct AlarmListView: View {
                             .font(.title3)
                     }
                 }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: { showFakeAlarm = true } ) {
+                        Image(systemName: "play.fill")
+                            .foregroundStyle(.red)
+                    }
+                }
             }
             .sheet(isPresented: $showCreateEditor) {
                 AlarmEditorView()
             }
             .sheet(item: $selectedAlarm) { alarm in
                 AlarmEditorView(alarm: alarm)
+            }
+            .fullScreenCover(isPresented: $showFakeAlarm) {
+                WakeUpView(alarmLabel: "Prueba de fuego")
             }
         }
     }

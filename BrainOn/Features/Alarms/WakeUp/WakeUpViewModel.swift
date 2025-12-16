@@ -17,8 +17,11 @@ final class WakeUpViewModel {
     private let audioService: AudioServiceProtocol
     private var clockTimer: Task<Void, Never>?
     
+    var shouldShowMission = false
     var currentTime = Date()
+    
     var alarmLabel: String
+    var onWakeUpCompleted: (() -> Void)?
     
     
     // MARK: Initialization
@@ -39,10 +42,19 @@ final class WakeUpViewModel {
     
     func stopAlarm() {
         audioService.stopAlarm()
+        onWakeUpCompleted?()
     }
     
-    func prepareForMission() {
+    func startMissionFlow() {
         audioService.duckVolumeForMission()
+        
+        shouldShowMission = true
+    }
+    
+    func onMissionSuccess() {
+        shouldShowMission = false
+        
+        stopAlarm()
     }
 }
 

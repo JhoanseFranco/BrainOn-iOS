@@ -12,6 +12,8 @@ struct WakeUpView: View {
     
     // MARK: Properties
     
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var viewModel: WakeUpViewModel
     @State private var isPulsing = false
     
@@ -62,8 +64,7 @@ struct WakeUpView: View {
                 Spacer()
                 
                 Button {
-                    viewModel.prepareForMission()
-                    viewModel.stopAlarm()
+                    viewModel.startMissionFlow()
                 } label: {
                     Text(AlarmsStrings.WakeUp.iAmAwake)
                         .font(.title3)
@@ -80,12 +81,19 @@ struct WakeUpView: View {
             }
         }
         .onAppear {
+            viewModel.onWakeUpCompleted = {
+                dismiss()
+            }
+            
             viewModel.onAppear()
             
             isPulsing = true
         }
         .onDisappear {
             viewModel.onDisappear()
+        }
+        .fullScreenCover(isPresented: $viewModel.shouldShowMission) {
+            MathMissionView(difficulty: .easy, onDismiss: viewModel.onMissionSuccess)
         }
     }
 }

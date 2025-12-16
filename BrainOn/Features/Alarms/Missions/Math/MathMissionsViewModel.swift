@@ -83,12 +83,7 @@ private extension MathMissionsViewModel {
         isSuccess = true
         
         audioService.stopAlarm()
-        
-        Task {
-            try? await Task.sleep(for: .seconds(1))
-            
-            onMissionCompleted?()
-        }
+        onMissionCompleted?()
     }
     
     func handleError() {
